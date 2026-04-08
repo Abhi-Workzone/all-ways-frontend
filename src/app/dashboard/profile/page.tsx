@@ -111,8 +111,8 @@ export default function UserProfilePage() {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="mb-12">
-        <h1 className="text-3xl font-black text-white mb-2 tracking-tight">Profile Settings</h1>
-        <p className="text-[#8888aa] text-sm font-medium italic">Manage your personal identity and default deployment coordinates.</p>
+        <h1 className="text-3xl text-emphasized text-[var(--foreground)] mb-2 tracking-tight">Profile Settings</h1>
+        <p className="text-[var(--text-muted)] text-sm font-medium italic">Manage your personal identity and default deployment coordinates.</p>
         <div className="w-20 h-1 bg-gradient-to-r from-[#6C63FF] to-[#FF6B9D] mt-6 rounded-full" />
       </div>
 
@@ -120,29 +120,29 @@ export default function UserProfilePage() {
         {/* Sidebar Info */}
         <div className="space-y-6">
           <div className="card text-center !p-8 border-[#6C63FF]/20">
-            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#6C63FF] to-[#FF6B9D] flex items-center justify-center text-white text-4xl font-black mx-auto mb-6 shadow-xl shadow-[#6C63FF]/20">
+            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#6C63FF] to-[#FF6B9D] flex items-center justify-center text-[var(--foreground)] text-4xl text-emphasized mx-auto mb-6 shadow-xl shadow-[var(--primary)]/20">
               {profile?.email?.charAt(0).toUpperCase()}
             </div>
-            <h3 className="text-white font-black text-xl uppercase tracking-tight">{profile?.fullName || 'Identity Pending'}</h3>
-            <p className="text-xs text-[#8888aa] font-mono tracking-widest mt-1 opacity-60">{profile?.email}</p>
+            <h3 className="text-[var(--foreground)] text-emphasized text-xl uppercase tracking-tight">{profile?.fullName || 'Identity Pending'}</h3>
+            <p className="text-xs text-[var(--text-muted)] font-mono tracking-widest mt-1 opacity-60">{profile?.email}</p>
 
-            <div className="mt-8 pt-8 border-t border-white/5 space-y-4">
+            <div className="mt-8 pt-8 border-t border-[var(--border)] space-y-4">
               <div className="flex items-center gap-3 text-left">
-                <div className="w-8 h-8 rounded-lg bg-black/40 border border-white/5 flex items-center justify-center text-[#6C63FF]">
+                <div className="w-8 h-8 rounded-lg bg-soft-dark border border-[var(--border)] flex items-center justify-center text-[var(--primary)]">
                   <FiMail size={14} />
                 </div>
                 <div>
-                  <p className="text-[10px] text-[#666680] font-black uppercase tracking-widest">Email Vector</p>
-                  <p className="text-[11px] text-white font-medium">{profile?.email}</p>
+                  <p className="text-[10px] text-[var(--placeholder)] text-emphasized uppercase tracking-widest">Email Vector</p>
+                  <p className="text-[11px] text-[var(--foreground)] font-medium">{profile?.email}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 text-left">
-                <div className="w-8 h-8 rounded-lg bg-black/40 border border-white/5 flex items-center justify-center text-[#00D4AA]">
+                <div className="w-8 h-8 rounded-lg bg-soft-dark border border-[var(--border)] flex items-center justify-center text-[var(--accent)]">
                   <FiCalendar size={14} />
                 </div>
                 <div>
-                  <p className="text-[10px] text-[#666680] font-black uppercase tracking-widest">Registry Date</p>
-                  <p className="text-[11px] text-white font-medium">
+                  <p className="text-[10px] text-[var(--placeholder)] text-emphasized uppercase tracking-widest">Registry Date</p>
+                  <p className="text-[11px] text-[var(--foreground)] font-medium">
                     {new Date(profile?.createdAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
                   </p>
                 </div>
@@ -151,8 +151,8 @@ export default function UserProfilePage() {
           </div>
 
           <div className="card bg-gradient-to-br from-[#6C63FF]/5 to-transparent border-[#6C63FF]/10">
-            <h3 className="text-white font-bold mb-3 flex items-center gap-2 italic text-sm"><FiSave className="text-[#6C63FF]" /> Strategy</h3>
-            <p className="text-xs text-[#8888aa] leading-relaxed">
+            <h3 className="text-[var(--foreground)] font-bold mb-3 flex items-center gap-2 italic text-sm"><FiSave className="text-[var(--primary)]" /> Strategy</h3>
+            <p className="text-xs text-[var(--text-muted)] leading-relaxed">
               Keeping your profile and coordinates updated ensures faster dispatching and accurate mission routing.
             </p>
           </div>
@@ -163,46 +163,46 @@ export default function UserProfilePage() {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div className="card space-y-8">
               <div className="space-y-6">
-                <h2 className="text-xl font-bold text-white flex items-center gap-2">
-                  <FiUser className="text-[#6C63FF]" /> Identity Matrix
+                <h2 className="text-xl font-bold text-[var(--foreground)] flex items-center gap-2">
+                  <FiUser className="text-[var(--primary)]" /> Identity Matrix
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black text-[#666680] uppercase tracking-widest">Full Name Signature</label>
+                    <label className="text-[10px] text-emphasized text-[var(--placeholder)] uppercase tracking-widest">Full Name Signature</label>
                     <div className="relative">
-                      <FiUser className="absolute left-4 top-1/2 -translate-y-1/2 text-[#6C63FF]/60" />
+                      <FiUser className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--primary)]/60" />
                       <input
                         {...register('fullName')}
                         className="input-field !pl-11"
                         placeholder="e.g. John Doe"
                       />
                     </div>
-                    {errors.fullName && <p className="text-xs text-[#FF6B9D]">{errors.fullName.message}</p>}
+                    {errors.fullName && <p className="text-xs text-[var(--secondary)]">{errors.fullName.message}</p>}
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black text-[#666680] uppercase tracking-widest">Primary Contact (Mobile)</label>
+                    <label className="text-[10px] text-emphasized text-[var(--placeholder)] uppercase tracking-widest">Primary Contact (Mobile)</label>
                     <div className="relative">
-                      <FiPhone className="absolute left-4 top-1/2 -translate-y-1/2 text-[#00D4AA]/60" />
+                      <FiPhone className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--accent)]/60" />
                       <input
                         {...register('phoneNumber')}
                         className="input-field !pl-11"
                         placeholder="10-digit number"
                       />
                     </div>
-                    {errors.phoneNumber && <p className="text-xs text-[#FF6B9D]">{errors.phoneNumber.message}</p>}
+                    {errors.phoneNumber && <p className="text-xs text-[var(--secondary)]">{errors.phoneNumber.message}</p>}
                   </div>
                 </div>
               </div>
 
-              <div className="space-y-6 pt-6 border-t border-white/5">
-                <h2 className="text-xl font-bold text-white flex items-center gap-2">
-                  <FiMapPin className="text-[#FF6B9D]" /> Deployment Coordinates
+              <div className="space-y-6 pt-6 border-t border-[var(--border)]">
+                <h2 className="text-xl font-bold text-[var(--foreground)] flex items-center gap-2">
+                  <FiMapPin className="text-[var(--secondary)]" /> Deployment Coordinates
                 </h2>
 
                 <div className="space-y-4">
-                  <div className="border border-white/5 rounded-3xl overflow-hidden shadow-2xl">
+                  <div className="border border-[var(--border)] rounded-3xl overflow-hidden shadow-2xl">
                     <LocationPicker
                       onLocationSelect={handleLocationSelect}
                       defaultLat={watch('latitude')}
@@ -211,15 +211,15 @@ export default function UserProfilePage() {
                   </div>
 
                   <div className="grid grid-cols-1 gap-4">
-                    <div className="p-4 bg-black/40 border border-white/5 rounded-2xl">
-                      <p className="text-[9px] uppercase text-[#666680] font-black tracking-widest mb-1.5 opacity-80 flex items-center gap-1.5">
-                        <FiMapPin className="text-[#00D4AA]" /> Map-Detected Coordinate
+                    <div className="p-4 bg-soft-dark border border-[var(--border)] rounded-2xl">
+                      <p className="text-[9px] uppercase text-[var(--placeholder)] text-emphasized tracking-widest mb-1.5 opacity-80 flex items-center gap-1.5">
+                        <FiMapPin className="text-[var(--accent)]" /> Map-Detected Coordinate
                       </p>
-                      <p className="text-xs text-white leading-relaxed italic">{watch('businessMapAddress') || 'No location locked...'}</p>
+                      <p className="text-xs text-[var(--foreground)] leading-relaxed italic">{watch('businessMapAddress') || 'No location locked...'}</p>
                     </div>
 
                     <div>
-                      <label className="text-[9px] uppercase text-[#666680] font-black tracking-widest mb-2 block">Building / Suite / Zone Details</label>
+                      <label className="text-[9px] uppercase text-[var(--placeholder)] text-emphasized tracking-widest mb-2 block">Building / Suite / Zone Details</label>
                       <textarea
                         {...register('businessManualAddress')}
                         rows={2}
@@ -237,14 +237,14 @@ export default function UserProfilePage() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-6 border-t border-white/5">
-                <p className="text-[10px] text-[#666680] font-black uppercase tracking-widest italic">
+              <div className="flex items-center justify-between pt-6 border-t border-[var(--border)]">
+                <p className="text-[10px] text-[var(--placeholder)] text-emphasized uppercase tracking-widest italic">
                   {isDirty ? 'Unsaved signal detected' : 'Identity synchronized'}
                 </p>
                 <button
                   type="submit"
                   disabled={isSubmitting || !isDirty}
-                  className="bg-[#6C63FF] text-white px-8 h-12 rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-lg shadow-[#6C63FF]/30 hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center gap-2"
+                  className="bg-[var(--primary)] !text-white px-8 h-12 rounded-2xl text-emphasized text-[10px] uppercase tracking-widest shadow-lg shadow-[var(--primary)]/30 hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center gap-2"
                 >
                   {isSubmitting ? (
                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />

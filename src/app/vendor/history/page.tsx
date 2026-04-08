@@ -24,8 +24,8 @@ export default function VendorHistoryPage() {
 
   const getStatusBadge = (status: string) => {
     switch (status) {
-      case 'COMPLETED': return <span className="px-3 py-1 bg-[#00D4AA]/10 border border-[#00D4AA]/20 text-[#00D4AA] rounded-full text-[9px] font-black uppercase tracking-widest">Completed</span>;
-      case 'CANCELLED': return <span className="px-3 py-1 bg-red-500/10 border border-red-500/20 text-red-500 rounded-full text-[9px] font-black uppercase tracking-widest">Cancelled</span>;
+      case 'COMPLETED': return <span className="px-3 py-1 bg-[var(--accent)]/10 border border-[#00D4AA]/20 text-[var(--accent)] rounded-full text-[9px] text-emphasized uppercase tracking-widest">Completed</span>;
+      case 'CANCELLED': return <span className="px-3 py-1 bg-red-500/10 border border-red-500/20 text-red-500 rounded-full text-[9px] text-emphasized uppercase tracking-widest">Cancelled</span>;
       default: return null;
     }
   };
@@ -53,54 +53,65 @@ export default function VendorHistoryPage() {
     <div className="space-y-10 pb-20">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
-           <h1 className="text-4xl font-black text-white mb-2 tracking-tight">Mission Archives</h1>
-           <p className="text-[#8888aa] text-sm italic font-medium">Verifiable ledger of all terminal operational engagements.</p>
+           <h1 className="text-4xl text-emphasized text-[var(--foreground)] mb-2 tracking-tight">Mission Archives</h1>
+           <p className="text-[var(--text-muted)] text-sm italic font-medium">Verifiable ledger of all terminal operational engagements.</p>
         </div>
-        <div className="flex items-center gap-3 px-5 py-3 bg-[#6C63FF]/5 border border-[#6C63FF]/10 rounded-2xl">
-           <FiTrendingUp className="text-[#6C63FF]" />
-           <p className="text-[10px] text-white/50 font-black uppercase tracking-widest">Total Resolved: <span className="text-white">{history?.length || 0}</span></p>
+        <div className="flex items-center gap-3 px-5 py-3 bg-[var(--primary)]/5 border border-[#6C63FF]/10 rounded-2xl">
+           <FiTrendingUp className="text-[var(--primary)]" />
+           <p className="text-[10px] text-[var(--foreground)]/50 text-emphasized uppercase tracking-widest">Total Resolved: <span className="text-[var(--foreground)]">{history?.length || 0}</span></p>
         </div>
       </div>
 
       <div className="grid gap-6">
         {history?.map((job: any) => (
-          <div key={job._id} className="card !p-8 flex flex-col md:flex-row md:items-center justify-between gap-8 overflow-hidden relative group hover:border-[#6C63FF]/20 transition-all">
+          <div key={job._id} className="card !p-4 md:!p-8 hover:border-[#6C63FF]/20 transition-all group overflow-hidden relative border-[var(--border)] bg-soft-dark">
             
-            <div className="flex items-start gap-6 flex-1">
-               <div className="w-16 h-16 rounded-2xl bg-black/40 flex items-center justify-center text-4xl border border-white/5 group-hover:scale-110 transition-transform duration-500">
-                 {job.serviceId?.icon || '🔧'}
-               </div>
-               <div className="space-y-2">
-                  <div className="flex flex-wrap items-center gap-3">
-                     <h3 className="font-black text-white text-2xl uppercase tracking-tight truncate max-w-[300px]">{job.serviceId?.name}</h3>
-                     {getStatusBadge(job.status)}
+            {/* Layout Container */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 md:gap-8">
+               
+               {/* Left Section: Service Identity */}
+               <div className="flex items-center gap-4 sm:gap-6 flex-1">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-soft-dark flex items-center justify-center text-3xl sm:text-4xl border border-[var(--border)] shrink-0 group-hover:scale-105 transition-transform duration-500">
+                    {job.serviceId?.icon || '🔧'}
                   </div>
-                  <div className="flex flex-wrap items-center gap-5 text-[10px] text-[#666680] font-bold uppercase tracking-widest">
-                     <p className="flex items-center gap-1.5"><FiClock className="text-[#6C63FF]" /> {formatDate(job.preferredTime)}</p>
-                     <p className="italic opacity-60">Record ID: #{job._id.slice(-8).toUpperCase()}</p>
+                  <div className="min-w-0 flex-1">
+                     <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-1 sm:mb-2">
+                        <h3 className="text-xl sm:text-2xl text-emphasized text-[var(--foreground)] uppercase tracking-tight truncate max-w-[200px] sm:max-w-[300px]">
+                          {job.serviceId?.name}
+                        </h3>
+                        {getStatusBadge(job.status)}
+                     </div>
+                     <div className="flex flex-col sm:flex-row sm:items-center gap-x-5 gap-y-1 text-[9px] sm:text-[10px] text-[var(--placeholder)] font-bold uppercase tracking-widest">
+                        <p className="flex items-center gap-1.5 whitespace-nowrap"><FiClock className="text-[var(--primary)]" /> {formatDate(job.preferredTime)}</p>
+                        <p className="italic opacity-60 truncate">Record ID: #{job._id.slice(-8).toUpperCase()}</p>
+                     </div>
                   </div>
                </div>
-            </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-4">
-               <span className="text-[9px] text-[#00D4AA] font-mono tracking-widest bg-[#00D4AA]/5 px-4 py-2 rounded-xl border border-[#00D4AA]/10 uppercase font-black">Dispatch Finalized ✅</span>
-               <button 
-                  onClick={() => {
-                     setSelectedRequest(job);
-                     setIsDetailsOpen(true);
-                  }}
-                  className="px-8 py-3 bg-[#12121a] border border-[#6C63FF]/20 text-[#6C63FF] text-[10px] font-black tracking-[0.2em] uppercase rounded-2xl hover:bg-[#6C63FF]/10 hover:translate-y-[-2px] transition-all flex items-center gap-2.5 active:scale-95 whitespace-nowrap"
-               >
-                  <FiList /> View Dispatch Protocol
-               </button>
+               {/* Right Section: Status & Actions */}
+               <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 pt-4 sm:pt-0 border-t border-[var(--border)] sm:border-0 relative z-10">
+                  <span className="w-full sm:w-auto text-center text-[9px] text-[var(--accent)] font-mono tracking-widest bg-[var(--accent)]/5 px-4 py-3 sm:py-2 rounded-xl border border-[#00D4AA]/10 uppercase text-emphasized whitespace-nowrap">
+                    Dispatch Finalized ✅
+                  </span>
+                  <button 
+                     onClick={() => {
+                        setSelectedRequest(job);
+                        setIsDetailsOpen(true);
+                     }}
+                     className="w-full sm:w-auto px-6 sm:px-8 py-4 sm:py-3 bg-[var(--surface)] border border-[#6C63FF]/20 text-[var(--primary)] text-[10px] text-emphasized tracking-[0.2em] uppercase rounded-2xl hover:bg-[var(--primary)]/10 hover:translate-y-[-2px] transition-all flex items-center justify-center gap-2.5 active:scale-95 whitespace-nowrap"
+                  >
+                     <FiList /> <span className="sm:hidden">Protocol</span><span className="hidden sm:inline">View Dispatch Protocol</span>
+                  </button>
+               </div>
+
             </div>
           </div>
         ))}
 
         {history?.length === 0 && (
-          <div className="card text-center py-24 space-y-6 border-dashed border-white/10 opacity-60">
-            <div className="text-7xl font-black text-white/5 tracking-tighter">EMPTY LEDGER</div>
-            <p className="text-[#8888aa] max-w-sm mx-auto text-xs uppercase tracking-widest font-black italic">No archived mission records detected in the primary matrix.</p>
+          <div className="card text-center py-24 space-y-6 border-dashed border-[var(--border)] opacity-60">
+            <div className="text-7xl text-emphasized text-[var(--foreground)]/5 tracking-tighter">EMPTY LEDGER</div>
+            <p className="text-[var(--text-muted)] max-w-sm mx-auto text-xs uppercase tracking-widest text-emphasized italic">No archived mission records detected in the primary matrix.</p>
           </div>
         )}
       </div>

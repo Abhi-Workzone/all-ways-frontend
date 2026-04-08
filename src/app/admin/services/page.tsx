@@ -126,8 +126,8 @@ export default function AdminServicesPage() {
     <div className="max-w-6xl mx-auto w-full">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">Manage Services</h1>
-          <p className="text-[#8888aa]">Add, edit, or remove services offered on the platform.</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mb-2">Manage Services</h1>
+          <p className="text-[var(--text-muted)]">Add, edit, or remove services offered on the platform.</p>
         </div>
         
         {!isAdding && !editingId && (
@@ -143,32 +143,32 @@ export default function AdminServicesPage() {
       {/* Add New Service Form */}
       {isAdding && (
         <div className="card mb-8 border-[#00D4AA]">
-          <h2 className="text-lg font-semibold text-white mb-6">Create New Service</h2>
+          <h2 className="text-lg font-semibold text-[var(--foreground)] mb-6">Create New Service</h2>
           <form onSubmit={handleSubmit(onAddSubmit)} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-[#8888aa] mb-1">Service Name</label>
+                <label className="block text-sm font-medium text-[var(--text-muted)] mb-1">Service Name</label>
                 <input {...register('name')} placeholder="e.g. Car Cleaning" className="input-field" />
-                {errors.name && <p className="text-xs text-[#FF6B9D] mt-1">{errors.name.message}</p>}
+                {errors.name && <p className="text-xs text-[var(--secondary)] mt-1">{errors.name.message}</p>}
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-[#8888aa] mb-1">Emoji Icon</label>
+                <label className="block text-sm font-medium text-[var(--text-muted)] mb-1">Emoji Icon</label>
                 <input {...register('icon')} placeholder="e.g. 🚗" className="input-field !w-20 text-center" />
               </div>
 
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-[#8888aa] mb-1">Description (Max 3 lines)</label>
+                <label className="block text-sm font-medium text-[var(--text-muted)] mb-1">Description (Max 3 lines)</label>
                 <textarea {...register('description')} rows={3} className="input-field resize-none block" />
-                {errors.description && <p className="text-xs text-[#FF6B9D] mt-1">{errors.description.message}</p>}
+                {errors.description && <p className="text-xs text-[var(--secondary)] mt-1">{errors.description.message}</p>}
               </div>
 
               <div className="flex items-center gap-6 mt-2 pb-4 border-b border-[rgba(255,255,255,0.05)] md:col-span-2">
-                <label className="flex items-center gap-2 cursor-pointer text-white">
+                <label className="flex items-center gap-2 cursor-pointer text-[var(--foreground)]">
                   <input type="checkbox" {...register('isActive')} className="w-5 h-5 accent-[#00D4AA]" />
                   Is Active
                 </label>
-                <label className="flex items-center gap-2 cursor-pointer text-[#FF6B9D]">
+                <label className="flex items-center gap-2 cursor-pointer text-[var(--secondary)]">
                   <input type="checkbox" {...register('isComingSoon')} className="w-5 h-5 accent-[#FF6B9D]" />
                   Mark as &quot;Coming Soon&quot;
                 </label>
@@ -216,11 +216,11 @@ export default function AdminServicesPage() {
                      </div>
                      <textarea {...register('description')} rows={3} className="input-field !p-2 resize-none block text-sm focus:ring-0" />
                      
-                     <div className="flex items-center gap-4 text-xs font-medium bg-black/20 p-2 rounded-lg">
-                        <label className="flex items-center gap-1.5 cursor-pointer text-white">
+                     <div className="flex items-center gap-4 text-xs font-medium bg-soft-dark p-2 rounded-lg">
+                        <label className="flex items-center gap-1.5 cursor-pointer text-[var(--foreground)]">
                           <input type="checkbox" {...register('isActive')} className="w-4 h-4 accent-[#00D4AA]" /> Active
                         </label>
-                        <label className="flex items-center gap-1.5 cursor-pointer text-[#FF6B9D]">
+                        <label className="flex items-center gap-1.5 cursor-pointer text-[var(--secondary)]">
                           <input type="checkbox" {...register('isComingSoon')} className="w-4 h-4 accent-[#FF6B9D]" /> Coming Soon
                         </label>
                      </div>
@@ -243,12 +243,12 @@ export default function AdminServicesPage() {
                 <div className="flex justify-between items-start mb-4">
                   <div className="flex items-center gap-3 flex-1 min-w-0 mr-4">
                     <div className="text-3xl shrink-0">{service.icon}</div>
-                    <h3 className="text-lg font-bold text-white group-hover:text-[#6C63FF] transition-colors truncate" title={service.name}>{service.name}</h3>
+                    <h3 className="text-lg font-bold text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors truncate" title={service.name}>{service.name}</h3>
                   </div>
                   <div className="flex gap-2">
                     <button 
                        onClick={() => startEditing(service)}
-                       className="p-2 bg-[rgba(108,99,255,0.1)] text-[#6C63FF] hover:bg-[#6C63FF] hover:text-white rounded-lg transition-all"
+                       className="p-2 bg-[rgba(108,99,255,0.1)] text-[var(--primary)] hover:bg-[var(--primary)] hover:!text-white rounded-lg transition-all"
                        title="Edit Service"
                     >
                       <FiEdit2 size={14} />
@@ -259,7 +259,7 @@ export default function AdminServicesPage() {
                            deleteMutation.mutate(service._id);
                          }
                        }}
-                       className="p-2 bg-[rgba(244,67,54,0.1)] text-[#F44336] hover:bg-[#F44336] hover:text-white rounded-lg transition-all"
+                       className="p-2 bg-[rgba(244,67,54,0.1)] text-[#F44336] hover:bg-[#F44336] hover:text-[var(--foreground)] rounded-lg transition-all"
                        title="Delete Service"
                     >
                       <FiTrash2 size={14} />
@@ -267,13 +267,13 @@ export default function AdminServicesPage() {
                   </div>
                 </div>
                 
-                <p className="text-sm text-[#8888aa] mb-auto line-clamp-3 leading-relaxed" title={service.description}>{service.description}</p>
+                <p className="text-sm text-[var(--text-muted)] mb-auto line-clamp-3 leading-relaxed" title={service.description}>{service.description}</p>
                 
                 <div className="flex items-center gap-2 pt-4 mt-6 border-t border-[rgba(255,255,255,0.05)] shrink-0">
                   {service.isActive ? (
-                    <span className="badge bg-[rgba(0,212,170,0.1)] text-[#00D4AA]">Active</span>
+                    <span className="badge bg-[rgba(0,212,170,0.1)] text-[var(--accent)]">Active</span>
                   ) : (
-                    <span className="badge bg-[rgba(255,255,255,0.1)] text-[#8888aa]">Inactive</span>
+                    <span className="badge bg-[rgba(255,255,255,0.1)] text-[var(--text-muted)]">Inactive</span>
                   )}
                   
                   {service.isComingSoon && (

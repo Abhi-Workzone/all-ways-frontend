@@ -149,8 +149,8 @@ export default function VendorProfilePage() {
   return (
     <div className="max-w-5xl mx-auto pb-20">
       <div className="mb-12 text-center">
-        <h1 className="text-4xl font-black text-white mb-3 tracking-tight">Business Profile</h1>
-        <p className="text-[#8888aa] text-base italic font-medium">Manage your professional credentials and operational scope.</p>
+        <h1 className="text-4xl text-emphasized text-[var(--foreground)] mb-3 tracking-tight">Business Profile</h1>
+        <p className="text-[var(--text-muted)] text-base italic font-medium">Manage your professional credentials and operational scope.</p>
         <div className="w-24 h-1 bg-gradient-to-r from-[#6C63FF] to-[#00D4AA] mx-auto mt-6 rounded-full" />
       </div>
 
@@ -158,32 +158,32 @@ export default function VendorProfilePage() {
         <div className="lg:col-span-2 space-y-6">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div className="card space-y-6">
-              <h2 className="text-xl font-bold text-white flex items-center gap-2">
-                <FiUser className="text-[#6C63FF]" /> Personal & Business Info
+              <h2 className="text-xl font-bold text-[var(--foreground)] flex items-center gap-2">
+                <FiUser className="text-[var(--primary)]" /> Personal & Business Info
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-[#8888aa]">Full Name</label>
+                  <label className="text-sm font-medium text-[var(--text-muted)]">Full Name</label>
                   <input {...register('fullName')} className="input-field" placeholder="Owner full name" />
-                  {errors.fullName && <p className="text-xs text-[#FF6B9D]">{errors.fullName.message}</p>}
+                  {errors.fullName && <p className="text-xs text-[var(--secondary)]">{errors.fullName.message}</p>}
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-[#8888aa]">Mobile Number</label>
+                  <label className="text-sm font-medium text-[var(--text-muted)]">Mobile Number</label>
                   <div className="relative">
-                    <FiPhone className="absolute left-4 top-1/2 -translate-y-1/2 text-[#8888aa]" />
+                    <FiPhone className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--text-muted)]" />
                     <input {...register('phoneNumber')} className="input-field !pl-11" placeholder="10-digit number" />
                   </div>
-                  {errors.phoneNumber && <p className="text-xs text-[#FF6B9D]">{errors.phoneNumber.message}</p>}
+                  {errors.phoneNumber && <p className="text-xs text-[var(--secondary)]">{errors.phoneNumber.message}</p>}
                 </div>
                 <div className="md:col-span-2 space-y-2">
-                  <label className="text-sm font-medium text-[#8888aa]">Business Name</label>
+                  <label className="text-sm font-medium text-[var(--text-muted)]">Business Name</label>
                   <input {...register('businessName')} className="input-field" placeholder="Your brand name" />
-                  {errors.businessName && <p className="text-xs text-[#FF6B9D]">{errors.businessName.message}</p>}
+                  {errors.businessName && <p className="text-xs text-[var(--secondary)]">{errors.businessName.message}</p>}
                 </div>
                 <div className="md:col-span-2 space-y-3">
-                  <label className="text-sm font-medium text-[#8888aa] flex items-center gap-2">
-                    <FiMapPin className="text-[#FF6B9D]" /> Business Location (Shop/Office)
+                  <label className="text-sm font-medium text-[var(--text-muted)] flex items-center gap-2">
+                    <FiMapPin className="text-[var(--secondary)]" /> Business Location (Shop/Office)
                   </label>
                   
                   <LocationPicker 
@@ -193,13 +193,13 @@ export default function VendorProfilePage() {
                   />
 
                   <div className="mt-4 space-y-4">
-                     <div className="p-3 bg-black/20 border border-white/5 rounded-xl">
-                        <p className="text-[10px] uppercase text-[#666680] font-black tracking-widest mb-1 opacity-80 flex items-center gap-1.5"><FiMapPin className="text-[#00D4AA]" /> Map-Detected Area</p>
-                        <p className="text-xs text-white leading-relaxed min-h-[1.5em]">{watch('businessMapAddress') || 'Search or select shop location on map...'}</p>
+                     <div className="p-3 bg-soft-dark border border-[var(--border)] rounded-xl">
+                        <p className="text-[10px] uppercase text-[var(--placeholder)] text-emphasized tracking-widest mb-1 opacity-80 flex items-center gap-1.5"><FiMapPin className="text-[var(--accent)]" /> Map-Detected Area</p>
+                        <p className="text-xs text-[var(--foreground)] leading-relaxed min-h-[1.5em]">{watch('businessMapAddress') || 'Search or select shop location on map...'}</p>
                      </div>
 
                      <div>
-                        <label className="text-[10px] uppercase text-[#666680] font-black tracking-widest mb-1.5 block">Building / Shop No / Floor Details</label>
+                        <label className="text-[10px] uppercase text-[var(--placeholder)] text-emphasized tracking-widest mb-1.5 block">Building / Shop No / Floor Details</label>
                         <textarea 
                           {...register('businessManualAddress')} 
                           rows={2} 
@@ -213,23 +213,23 @@ export default function VendorProfilePage() {
                           }}
                         />
                         {errors.businessManualAddress && (
-                          <p className="mt-1 text-sm text-[#FF6B9D]">{errors.businessManualAddress.message}</p>
+                          <p className="mt-1 text-sm text-[var(--secondary)]">{errors.businessManualAddress.message}</p>
                         )}
                      </div>
                   </div>
                 </div>
                 <div className="md:col-span-2 space-y-2">
-                   <label className="text-sm font-medium text-[#8888aa]">Bio / Summary</label>
+                   <label className="text-sm font-medium text-[var(--text-muted)]">Bio / Summary</label>
                    <textarea {...register('bio')} rows={2} className="input-field resize-none" placeholder="Briefly describe your experience..." />
                 </div>
               </div>
             </div>
 
             <div className="card space-y-6">
-              <h2 className="text-xl font-bold text-white flex items-center gap-2">
-                <FiBriefcase className="text-[#00D4AA]" /> Provided Services
+              <h2 className="text-xl font-bold text-[var(--foreground)] flex items-center gap-2">
+                <FiBriefcase className="text-[var(--accent)]" /> Provided Services
               </h2>
-              <p className="text-sm text-[#8888aa]">Select all services your team can handle professionaly.</p>
+              <p className="text-sm text-[var(--text-muted)]">Select all services your team can handle professionaly.</p>
               
               {isServicesLoading ? (
                 <div className="flex justify-center p-4">
@@ -245,8 +245,8 @@ export default function VendorProfilePage() {
                         onClick={() => toggleService(service._id)}
                         className={`p-3 rounded-xl border cursor-pointer transition-all flex flex-col items-center gap-2 text-center ${
                           isSelected 
-                            ? 'bg-[rgba(0,212,170,0.1)] border-[#00D4AA] text-white' 
-                            : 'bg-black/20 border-white/5 text-[#8888aa] hover:border-white/20'
+                            ? 'bg-[rgba(0,212,170,0.1)] border-[#00D4AA] text-[var(--foreground)]' 
+                            : 'bg-soft-dark border-[var(--border)] text-[var(--text-muted)] hover:border-[var(--border)]'
                         }`}
                       >
                         <span className="text-2xl">{service.icon}</span>
@@ -256,11 +256,11 @@ export default function VendorProfilePage() {
                   })}
                 </div>
               )}
-              {errors.providedServices && <p className="text-xs text-[#FF6B9D]">{errors.providedServices.message}</p>}
+              {errors.providedServices && <p className="text-xs text-[var(--secondary)]">{errors.providedServices.message}</p>}
             </div>
 
             <div className="flex items-center justify-between">
-               <p className="text-xs text-[#8888aa]">
+               <p className="text-xs text-[var(--text-muted)]">
                  {isDirty ? 'Changes not saved' : 'Last sync with server'}
                </p>
                <button
@@ -281,9 +281,9 @@ export default function VendorProfilePage() {
               </h3>
               <div className="space-y-4">
                  <div className="flex flex-col gap-1">
-                   <span className="text-[10px] uppercase text-[#8888aa] tracking-widest font-bold">Status</span>
-                   <span className={`text-sm font-black ${
-                     profile?.businessStatus === 'APPROVED' ? 'text-[#00D4AA]' :
+                   <span className="text-[10px] uppercase text-[var(--text-muted)] tracking-widest font-bold">Status</span>
+                   <span className={`text-sm text-emphasized ${
+                     profile?.businessStatus === 'APPROVED' ? 'text-[var(--accent)]' :
                      profile?.businessStatus === 'REJECTED' ? 'text-[#F44336]' :
                      'text-[#FFB74D]'
                    }`}>
@@ -292,13 +292,13 @@ export default function VendorProfilePage() {
                  </div>
                  
                  {profile?.adminComments && (
-                   <div className="p-3 rounded-lg bg-black/40 border border-white/5">
-                      <span className="text-[10px] uppercase text-[#8888aa] tracking-widest font-bold block mb-1">Admin Feedback</span>
-                      <p className="text-xs text-white/90 leading-relaxed italic">&quot;{profile?.adminComments}&quot;</p>
+                   <div className="p-3 rounded-lg bg-soft-dark border border-[var(--border)]">
+                      <span className="text-[10px] uppercase text-[var(--text-muted)] tracking-widest font-bold block mb-1">Admin Feedback</span>
+                      <p className="text-xs text-[var(--foreground)]/90 leading-relaxed italic">&quot;{profile?.adminComments}&quot;</p>
                    </div>
                  )}
 
-                 <p className="text-xs text-[#8888aa] leading-relaxed">
+                 <p className="text-xs text-[var(--text-muted)] leading-relaxed">
                    {profile?.businessStatus === 'APPROVED' 
                      ? 'Your business is live! You can now accept incoming service requests.' 
                      : 'Complete your profile to submit for admin review. Verification usually takes 24-48 hours.'}
@@ -307,8 +307,8 @@ export default function VendorProfilePage() {
            </div>
 
            <div className="card bg-gradient-to-br from-[#6C63FF]/10 to-transparent border-[#6C63FF]/20">
-              <h3 className="text-white font-bold mb-3">Quick Guide</h3>
-              <ul className="text-xs text-[#8888aa] space-y-3 list-disc pl-4">
+              <h3 className="text-[var(--foreground)] font-bold mb-3">Quick Guide</h3>
+              <ul className="text-xs text-[var(--text-muted)] space-y-3 list-disc pl-4">
                 <li>Double check your mobile number for client contact.</li>
                 <li>Accurate address helps in matching local requests.</li>
                 <li>Choosing active services increases your job visibility.</li>

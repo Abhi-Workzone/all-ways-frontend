@@ -69,16 +69,16 @@ export default function LoginPage() {
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2 mb-6">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#6C63FF] to-[#FF6B9D] flex items-center justify-center">
-              <span className="text-white font-bold text-lg">a</span>
+              <span className="text-[var(--foreground)] font-bold uppercase text-lg">a</span>
             </div>
           </Link>
-          <h1 className="text-3xl font-bold text-white mb-2">Welcome Back</h1>
-          <p className="text-[#8888aa]">Sign in to your account</p>
+          <h1 className="text-3xl font-bold text-[var(--foreground)] mb-2">Welcome Back</h1>
+          <p className="text-[var(--text-muted)]">Sign in to your account</p>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-[#8888aa] mb-2">Email</label>
+            <label className="block text-sm font-medium text-[var(--text-muted)] mb-2">Email</label>
             <input
               {...register('email')}
               type="email"
@@ -86,12 +86,12 @@ export default function LoginPage() {
               className="input-field"
             />
             {errors.email && (
-              <p className="mt-1 text-sm text-[#FF6B9D]">{errors.email.message}</p>
+              <p className="mt-1 text-sm text-[var(--secondary)]">{errors.email.message}</p>
             )}
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-[#8888aa] mb-2">Password</label>
+            <label className="block text-sm font-medium text-[var(--text-muted)] mb-2">Password</label>
             <input
               {...register('password')}
               type="password"
@@ -99,7 +99,7 @@ export default function LoginPage() {
               className="input-field"
             />
             {errors.password && (
-              <p className="mt-1 text-sm text-[#FF6B9D]">{errors.password.message}</p>
+              <p className="mt-1 text-sm text-[var(--secondary)]">{errors.password.message}</p>
             )}
           </div>
 
@@ -116,9 +116,9 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <p className="text-center text-sm text-[#8888aa] mt-6">
+        <p className="text-center text-sm text-[var(--text-muted)] mt-6">
           Don&apos;t have an account?{' '}
-          <Link href="/signup" className="text-[#6C63FF] hover:text-[#8B83FF] font-medium transition-colors">
+          <Link href="/signup" className="text-[var(--primary)] hover:text-[#8B83FF] font-medium transition-colors">
             Sign up
           </Link>
         </p>

@@ -86,7 +86,7 @@ function MapView({ position, setPosition, onLocationSelect }: any) {
 // Dynamic import of the MapView component
 const DynamicMapView = dynamic(() => Promise.resolve(MapView), {
   ssr: false,
-  loading: () => <div className="h-full w-full bg-black/20 flex items-center justify-center text-[#8888aa] text-xs">Loading Map...</div>
+  loading: () => <div className="h-full w-full bg-soft-dark flex items-center justify-center text-[var(--text-muted)] text-xs">Loading Map...</div>
 });
 
 export default function LocationPicker({ 
@@ -153,13 +153,13 @@ export default function LocationPicker({
     );
   };
 
-  if (!mounted) return <div className="h-[300px] bg-black/20 rounded-xl" />;
+  if (!mounted) return <div className="h-[300px] bg-soft-dark rounded-xl" />;
 
   return (
     <div className="space-y-4">
       <div className="flex gap-2">
         <div className="relative flex-1">
-          <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-[#8888aa]" />
+          <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--text-muted)]" />
           <input
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -171,13 +171,13 @@ export default function LocationPicker({
         <button 
           type="button"
           onClick={handleUseCurrentLocation}
-          className="p-4 bg-[rgba(108,99,255,0.1)] text-[#6C63FF] border border-[#6C63FF]/20 rounded-xl hover:bg-[#6C63FF] hover:text-white transition-all"
+          className="p-4 bg-[rgba(108,99,255,0.1)] text-[var(--primary)] border border-[#6C63FF]/20 rounded-xl hover:bg-[var(--primary)] hover:text-[var(--foreground)] transition-all"
         >
           <FiTarget />
         </button>
       </div>
 
-      <div className="h-[300px] w-full rounded-2xl overflow-hidden border border-white/5 relative z-10">
+      <div className="h-[300px] w-full rounded-2xl overflow-hidden border border-[var(--border)] relative z-10">
         <DynamicMapView 
           position={position}
           setPosition={setPosition}
@@ -185,8 +185,8 @@ export default function LocationPicker({
         />
         
         <div className="absolute bottom-4 left-4 z-[1000] pointer-events-none">
-           <div className="bg-[#0a0a0f]/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10 text-[10px] text-[#8888aa] font-bold uppercase tracking-widest flex items-center gap-2">
-              <FiMapPin className="text-[#6C63FF]" /> Click map or drag pin
+           <div className="bg-[#0a0a0f]/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-[var(--border)] text-[10px] text-[var(--text-muted)] font-bold uppercase tracking-widest flex items-center gap-2">
+              <FiMapPin className="text-[var(--primary)]" /> Click map or drag pin
            </div>
         </div>
       </div>

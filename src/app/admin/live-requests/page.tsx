@@ -71,13 +71,13 @@ export default function AdminDashboardPage() {
     <div className="max-w-6xl mx-auto w-full">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">Service Requests Overview</h1>
-          <p className="text-[#8888aa]">Manage and track all customer service requests.</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mb-2">Service Requests Overview</h1>
+          <p className="text-[var(--text-muted)]">Manage and track all customer service requests.</p>
         </div>
 
         {/* Filter */}
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 text-[#8888aa] whitespace-nowrap">
+          <div className="flex items-center gap-2 text-[var(--text-muted)] whitespace-nowrap">
             <FiFilter /> Filter:
           </div>
           <select
@@ -99,8 +99,8 @@ export default function AdminDashboardPage() {
       ) : requests?.length === 0 ? (
         <div className="card text-center py-16 w-full">
           <div className="text-4xl mb-4">📋</div>
-          <h3 className="text-lg font-semibold text-white mb-1">No Requests Found</h3>
-          <p className="text-[#8888aa]">There are no service requests matching this filter.</p>
+          <h3 className="text-lg font-semibold text-[var(--foreground)] mb-1">No Requests Found</h3>
+          <p className="text-[var(--text-muted)]">There are no service requests matching this filter.</p>
         </div>
       ) : (
         <div className="space-y-4 w-full">
@@ -118,7 +118,7 @@ export default function AdminDashboardPage() {
             const currentIdx = statusIndex === -1 ? 1 : statusIndex;
 
             return (
-              <div key={req._id} className="card relative transition-all duration-300 overflow-hidden group hover:border-[#00D4AA]/50 w-full hover:bg-[rgba(108,99,255,0.02)]">
+              <div key={req._id} className="card relative transition-all duration-300 overflow-hidden group hover:border-[#00D4AA] w-full hover:bg-[rgba(108,99,255,0.02)]">
 
               <div className="flex flex-col xl:flex-row gap-6">
                 {/* Main Info */}
@@ -127,7 +127,7 @@ export default function AdminDashboardPage() {
                     <span className={`badge ${getStatusBadgeClass(req.status)} text-xs border-none`}>
                       {req.status.replace('_', ' ')}
                     </span>
-                    <span className="text-xs text-[#666680] font-mono">ID: {req._id}</span>
+                    <span className="text-xs text-[var(--placeholder)] font-mono">ID: {req._id}</span>
                   </div>
 
                   <div className="flex items-start gap-4 mb-5">
@@ -135,24 +135,24 @@ export default function AdminDashboardPage() {
                       {req.serviceId?.icon || '🔧'}
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-white mb-1">
+                      <h3 className="text-xl font-bold text-[var(--foreground)] mb-1">
                         {req.serviceId?.name || 'Unknown Service'}
                       </h3>
-                      <div className="flex items-center gap-2 text-sm text-[#8888aa]">
-                        <FiUser className="text-[#6C63FF]" /> {req.userId?.email || 'Unknown User'}
+                      <div className="flex items-center gap-2 text-sm text-[var(--text-muted)]">
+                        <FiUser className="text-[var(--primary)]" /> {req.userId?.email || 'Unknown User'}
                       </div>
                     </div>
                   </div>
 
-                  <p className="text-sm text-[#8888aa] bg-black/40 p-4 rounded-xl border border-white/5 whitespace-pre-wrap leading-relaxed mb-10 font-medium italic">
-                    <span className="font-black text-white/50 block mb-1 text-[10px] uppercase tracking-widest">Narrative</span>
+                  <p className="text-sm text-[var(--text-muted)] bg-soft-dark p-4 rounded-xl border border-[var(--border)] whitespace-pre-wrap leading-relaxed mb-10 font-medium italic">
+                    <span className="text-emphasized text-[var(--foreground)] block mb-1 text-[10px] uppercase tracking-widest">Narrative</span>
                     "{req.description}"
                   </p>
 
                   <div className="pt-2 px-1">
                     <div className="flex items-center justify-between relative px-2">
                       {/* Track Background */}
-                      <div className="absolute top-4 left-0 w-full h-[1px] bg-white/5" />
+                      <div className="absolute top-4 left-0 w-full h-[1px] bg-soft-dark" />
                       
                       {STATUS_MARKERS.map((marker, mIdx) => {
                         const isPassed = mIdx <= currentIdx && req.status !== 'CANCELLED';
@@ -162,13 +162,13 @@ export default function AdminDashboardPage() {
                           <div key={marker.id} className="relative z-10 flex flex-col items-center gap-2.5 w-1/4">
                             <div className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-500 border ${
                               isPassed 
-                                ? 'bg-[#6C63FF] border-[#6C63FF] text-white shadow-lg shadow-[#6C63FF]/20' 
-                                : 'bg-[#12121a] border-white/5 text-[#666680]'
+                                ? 'bg-[var(--primary)] border-[#6C63FF] !text-white shadow-lg shadow-[var(--primary)]/20' 
+                                : 'bg-soft-dark border-[var(--border)] text-[var(--placeholder)]'
                             } ${isActive ? 'scale-110 ring-4 ring-[#6C63FF]/20' : ''}`}>
                               {marker.icon}
                             </div>
                             <div className="text-center">
-                               <p className={`text-[8px] font-black uppercase tracking-widest ${isPassed ? 'text-white' : 'text-[#666680] opacity-40'}`}>
+                               <p className={`text-[8px] text-emphasized uppercase tracking-widest ${isPassed ? 'text-[var(--foreground)]' : 'text-[var(--placeholder)] opacity-40'}`}>
                                  {marker.label}
                                </p>
                             </div>
@@ -184,33 +184,33 @@ export default function AdminDashboardPage() {
 
                   <div className="space-y-4 mb-6 flex-1">
                     <div className="flex items-start gap-3">
-                      <FiCalendar className="text-[#00D4AA] mt-1 shrink-0" />
+                      <FiCalendar className="text-[var(--accent)] mt-1 shrink-0" />
                       <div>
-                        <p className="text-xs text-[#8888aa] font-medium uppercase tracking-wider mb-1">Preferred Time</p>
-                        <p className="text-sm text-white font-medium">{formatDate(req.preferredTime)}</p>
+                        <p className="text-xs text-[var(--text-muted)] font-medium uppercase tracking-wider mb-1">Preferred Time</p>
+                        <p className="text-sm text-[var(--foreground)] font-medium">{formatDate(req.preferredTime)}</p>
                       </div>
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <FiClock className="text-[#6C63FF] mt-1 shrink-0" />
+                      <FiClock className="text-[var(--primary)] mt-1 shrink-0" />
                       <div>
-                        <p className="text-xs text-[#8888aa] font-medium uppercase tracking-wider mb-1">Created At</p>
-                        <p className="text-sm text-white">{formatDate(req.createdAt)}</p>
+                        <p className="text-xs text-[var(--text-muted)] font-medium uppercase tracking-wider mb-1">Created At</p>
+                        <p className="text-sm text-[var(--foreground)]">{formatDate(req.createdAt)}</p>
                       </div>
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <FiMapPin className="text-[#FF6B9D] mt-1 shrink-0" />
+                      <FiMapPin className="text-[var(--secondary)] mt-1 shrink-0" />
                       <div>
-                        <p className="text-xs text-[#8888aa] font-medium uppercase tracking-wider mb-1">Address</p>
-                        <p className="text-sm text-white/90">{req.address}</p>
+                        <p className="text-xs text-[var(--text-muted)] font-medium uppercase tracking-wider mb-1">Address</p>
+                        <p className="text-sm text-[var(--foreground)]">{req.address}</p>
                       </div>
                     </div>
                   </div>
 
                   {/* Admin Action */}
                   <div className="bg-[rgba(108,99,255,0.05)] rounded-xl p-4 border border-[rgba(108,99,255,0.1)] mt-auto">
-                    <label className="block text-xs font-semibold text-[#8888aa] uppercase tracking-wider mb-2">
+                    <label className="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-2">
                       Update Status
                     </label>
                     <select

@@ -88,18 +88,18 @@ export default function DashboardPage() {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="mb-8">
-        <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">Raise a Service Request</h1>
-        <p className="text-[#8888aa]">Select a service and provide details to book an appointment.</p>
+        <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mb-2">Raise a Service Request</h1>
+        <p className="text-[var(--text-muted)]">Select a service and provide details to book an appointment.</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Service Selection */}
         <div className="space-y-4">
-          <h2 className="text-lg font-semibold text-white mb-4">1. Select Service</h2>
+          <h2 className="text-lg font-semibold text-[var(--foreground)] mb-4">1. Select Service</h2>
           
           {isServicesLoading ? (
             <div className="flex justify-center p-8">
-              <div className="w-8 h-8 border-2 border-[#6C63FF] border-t-transparent rounded-full animate-spin" />
+              <div className="w-8 h-8 border-2 border-[var(--primary)] border-t-transparent rounded-full animate-spin" />
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -112,34 +112,34 @@ export default function DashboardPage() {
                   }}
                   className={`card !p-4 cursor-pointer transition-all relative overflow-hidden group flex flex-col items-center text-center ${
                     selectedService?._id === service._id
-                      ? 'border-[#6C63FF] bg-[rgba(108,99,255,0.15)] ring-2 ring-[#6C63FF] shadow-[0_0_20px_rgba(108,99,255,0.3)] scale-[1.02]'
-                      : 'hover:border-[rgba(108,99,255,0.3)]'
+                      ? 'border-[var(--primary)] bg-[var(--surface-light)] ring-2 ring-[var(--primary)] shadow-[0_0_20px_rgba(108,99,255,0.3)] scale-[1.02]'
+                      : 'hover:border-[var(--primary)] hover:border-opacity-30'
                   }`}
                 >
                   {selectedService?._id === service._id && (
-                    <div className="absolute top-2 right-2 text-[#6C63FF]">
-                      <FiCheckCircle size={20} className="fill-[rgba(108,99,255,0.2)]" />
+                    <div className="absolute top-2 right-2 text-[var(--primary)]">
+                      <FiCheckCircle size={20} className="fill-[var(--primary)] fill-opacity-20" />
                     </div>
                   )}
                   <div className="text-4xl mb-3">{service.icon}</div>
-                  <h3 className="font-semibold text-white group-hover:text-[#6C63FF] transition-colors">{service.name}</h3>
+                  <h3 className="font-semibold text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors">{service.name}</h3>
                 </div>
               ))}
             </div>
           )}
           {errors.serviceId && (
-            <p className="text-sm text-[#FF6B9D] mt-2">{errors.serviceId.message}</p>
+            <p className="text-sm text-[var(--secondary)] mt-2">{errors.serviceId.message}</p>
           )}
         </div>
 
         {/* Request Details Form */}
         <div className="card h-fit">
-          <h2 className="text-lg font-semibold text-white mb-6">2. Appointment Details</h2>
+          <h2 className="text-lg font-semibold text-[var(--foreground)] mb-6">2. Appointment Details</h2>
           
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <div>
-              <label className="block text-sm font-medium text-[#8888aa] mb-3 flex items-center gap-2">
-                <FiMapPin className="text-[#6C63FF]" /> Service Location
+              <label className="block text-sm font-medium text-[var(--text-muted)] mb-3 flex items-center gap-2">
+                <FiMapPin className="text-[var(--primary)]" /> Service Location
               </label>
               
               <LocationPicker 
@@ -149,13 +149,13 @@ export default function DashboardPage() {
               />
 
               <div className="mt-4 space-y-4">
-                 <div className="p-3 bg-black/20 border border-white/5 rounded-xl">
-                    <p className="text-[10px] uppercase text-[#666680] font-black tracking-widest mb-1 opacity-80 flex items-center gap-1.5"><FiMapPin className="text-[#00D4AA]" /> Map-Detected Area</p>
-                    <p className="text-xs text-white leading-relaxed min-h-[1.5em]">{watch('mapAddress') || 'Select location on map above...'}</p>
+                 <div className="p-3 bg-[var(--surface-light)] border border-[var(--border)] rounded-xl">
+                    <p className="text-[10px] uppercase text-[var(--placeholder)] text-emphasized tracking-widest mb-1 opacity-80 flex items-center gap-1.5"><FiMapPin className="text-[var(--accent)]" /> Map-Detected Area</p>
+                    <p className="text-xs text-[var(--foreground)] leading-relaxed min-h-[1.5em]">{watch('mapAddress') || 'Select location on map above...'}</p>
                  </div>
 
                  <div>
-                    <label className="text-[10px] uppercase text-[#666680] font-black tracking-widest mb-1.5 block">Building / Flat / Road Details</label>
+                    <label className="text-[10px] uppercase text-emphasized tracking-widest mb-1.5 block">Building / Flat / Road Details</label>
                     <textarea 
                       {...register('manualAddress')} 
                       rows={2} 
@@ -169,18 +169,18 @@ export default function DashboardPage() {
                       }}
                     />
                     {errors.manualAddress && (
-                      <p className="mt-1 text-sm text-[#FF6B9D]">{errors.manualAddress.message}</p>
+                      <p className="mt-1 text-sm text-[var(--secondary)]">{errors.manualAddress.message}</p>
                     )}
                  </div>
               </div>
               
               {errors.address && (
-                <p className="mt-1 text-sm text-[#FF6B9D]">{errors.address.message}</p>
+                <p className="mt-1 text-sm text-[var(--secondary)]">{errors.address.message}</p>
               )}
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[#8888aa] mb-2">Issue Description</label>
+              <label className="block text-sm font-medium text-[var(--text-muted)] mb-2">Issue Description</label>
               <textarea
                 {...register('description')}
                 rows={3}
@@ -188,21 +188,21 @@ export default function DashboardPage() {
                 className="input-field resize-none block"
               />
               {errors.description && (
-                <p className="mt-1 text-sm text-[#FF6B9D]">{errors.description.message}</p>
+                <p className="mt-1 text-sm text-[var(--secondary)]">{errors.description.message}</p>
               )}
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[#8888aa] mb-2">Preferred Date & Time</label>
+              <label className="block text-sm font-medium text-[var(--text-muted)] mb-2">Preferred Date & Time</label>
               {/* Note: Using datetime-local ensures ISO format matching */}
               <input
                 {...register('preferredTime')}
                 type="datetime-local"
                 min={new Date().toISOString().slice(0, 16)}
-                className="input-field block w-full [color-scheme:dark]"
+                className="input-field block w-full"
               />
               {errors.preferredTime && (
-                <p className="mt-1 text-sm text-[#FF6B9D]">{errors.preferredTime.message}</p>
+                <p className="mt-1 text-sm text-[var(--secondary)]">{errors.preferredTime.message}</p>
               )}
             </div>
 
@@ -218,7 +218,7 @@ export default function DashboardPage() {
               )}
             </button>
             {!selectedService && (
-             <p className="text-xs text-center text-[#8888aa] mt-2">Please select a service first</p> 
+             <p className="text-xs text-center text-[var(--text-muted)] mt-2">Please select a service first</p> 
             )}
           </form>
         </div>

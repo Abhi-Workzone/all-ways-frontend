@@ -23,7 +23,7 @@ export default function HistoryPage() {
     switch (status) {
       case 'COMPLETED': return <span className="badge badge-completed">Finalized</span>;
       case 'CANCELLED': return <span className="badge badge-cancelled">Voided</span>;
-      default: return <span className="badge bg-white/10 text-white">{status}</span>;
+      default: return <span className="badge bg-soft-dark text-[var(--foreground)]">{status}</span>;
     }
   };
 
@@ -35,8 +35,8 @@ export default function HistoryPage() {
   return (
     <div className="max-w-4xl mx-auto pb-24">
       <div className="mb-10">
-        <h1 className="text-3xl font-black text-white mb-2 uppercase tracking-tight">Deployment Archives</h1>
-        <p className="text-[#8888aa] text-sm italic font-medium">Historical audit of all terminal service operations.</p>
+        <h1 className="text-3xl text-emphasized text-[var(--foreground)] mb-2 uppercase tracking-tight">Deployment Archives</h1>
+        <p className="text-[var(--text-muted)] text-sm italic font-medium">Historical audit of all terminal service operations.</p>
       </div>
 
       {isLoading ? (
@@ -44,43 +44,64 @@ export default function HistoryPage() {
           <div className="w-10 h-10 border-4 border-[#6C63FF] border-t-transparent rounded-full animate-spin" />
         </div>
       ) : data?.length === 0 ? (
-        <div className="card text-center py-24 border-dashed border-white/10 opacity-60">
+        <div className="card text-center py-24 border-dashed border-[var(--border)] opacity-60">
           <div className="text-7xl mb-6">📚</div>
-          <h3 className="text-xl font-black text-white mb-2 uppercase tracking-widest">Archive Empty</h3>
-          <p className="text-[#8888aa] text-sm italic">Completed missions will be stored here for auditing purposes.</p>
+          <h3 className="text-xl text-emphasized text-[var(--foreground)] mb-2 uppercase tracking-widest">Archive Empty</h3>
+          <p className="text-[var(--text-muted)] text-sm italic">Completed missions will be stored here for auditing purposes.</p>
         </div>
       ) : (
         <div className="space-y-6">
           {data?.map((req: any) => (
-             <div key={req._id} className="card !p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-6 hover:border-[#6C63FF]/30 transition-all group border-white/5 bg-black/20">
-                <div className="flex items-center gap-5 md:w-1/2">
-                   <div className="w-14 h-14 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
-                      {req.serviceId?.icon || '⚙️'}
-                   </div>
-                   <div className="min-w-0">
-                      <h3 className="text-lg font-black text-white uppercase tracking-tight truncate">{req.serviceId?.name || 'Protocol'}</h3>
-                      <p className="text-[10px] text-[#666680] font-mono tracking-tighter uppercase mt-1">SIGNATURE: {req._id.slice(-12).toUpperCase()}</p>
-                   </div>
-                </div>
-
-                <div className="flex items-center gap-8 pr-4">
-                   <div className="text-right">
-                      <p className="text-[10px] text-[#666680] font-black uppercase tracking-widest mb-1">TERMINAL DATE</p>
-                      <p className="text-sm text-white font-bold">{formatDate(req.createdAt)}</p>
-                   </div>
+             <div key={req._id} className="card !p-4 md:!p-5 hover:border-[#6C63FF]/30 transition-all group border-[var(--border)] bg-soft-dark">
+                {/* Mobile Layout: Stacked with logical grouping | Desktop Layout: Single Row */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 md:gap-6">
                    
-                   <div className="flex items-center gap-3">
-                      {getStatusBadge(req.status)}
-                      <button 
-                        onClick={() => {
-                          setSelectedRequest(req);
-                          setIsDetailsOpen(true);
-                        }}
-                        className="p-3 bg-white/5 hover:bg-white/10 text-white rounded-xl border border-white/5 transition-all"
-                      >
-                         <FiList size={18} />
-                      </button>
+                   {/* Left Section: Identity & Service */}
+                   <div className="flex items-center gap-4 sm:gap-5 flex-1">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-soft-dark border border-[var(--border)] flex items-center justify-center text-2xl sm:text-3xl shrink-0 group-hover:scale-110 transition-transform">
+                         {req.serviceId?.icon || '⚙️'}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                         <div className="flex items-center justify-between sm:block">
+                            <h3 className="text-base sm:text-lg text-emphasized text-[var(--foreground)] uppercase tracking-tight truncate">
+                               {req.serviceId?.name || 'Protocol'}
+                            </h3>
+                            {/* Mobile-only status badge next to name */}
+                            <div className="sm:hidden">
+                               {getStatusBadge(req.status)}
+                            </div>
+                         </div>
+                         <p className="text-[10px] text-[var(--placeholder)] font-mono tracking-tighter uppercase mt-0.5 sm:mt-1">
+                            SIGNATURE: {req._id.slice(-12).toUpperCase()}
+                         </p>
+                      </div>
                    </div>
+
+                   {/* Right Section: Metadata & Actions */}
+                   <div className="flex items-center justify-between sm:justify-end gap-4 sm:gap-8 border-t border-[var(--border)] pt-4 sm:pt-0 sm:border-t-0">
+                      <div className="text-left sm:text-right">
+                         <p className="text-[9px] sm:text-[10px] text-[var(--placeholder)] text-emphasized uppercase tracking-widest mb-0.5 sm:mb-1">TERMINAL DATE</p>
+                         <p className="text-xs sm:text-sm text-[var(--foreground)] font-bold">{formatDate(req.createdAt)}</p>
+                      </div>
+                      
+                      <div className="flex items-center gap-3">
+                         {/* Desktop-only status badge */}
+                         <div className="hidden sm:block">
+                            {getStatusBadge(req.status)}
+                         </div>
+                         <button 
+                           onClick={() => {
+                             setSelectedRequest(req);
+                             setIsDetailsOpen(true);
+                           }}
+                           className="p-2.5 sm:p-3 bg-soft-dark hover:bg-[var(--primary)]/10 text-[var(--foreground)] hover:text-[var(--primary)] rounded-xl border border-[var(--border)] transition-all"
+                           title="Examine Protocol"
+                         >
+                            <FiList size={18} />
+                         </button>
+                      </div>
+                   </div>
+
                 </div>
              </div>
           ))}

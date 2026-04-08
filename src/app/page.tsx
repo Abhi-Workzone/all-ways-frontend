@@ -46,11 +46,11 @@ export default function Home() {
       <Navbar />
 
       {/* ==================== HERO ==================== */}
-      <section className="relative min-h-screen w-full flex items-center justify-center grid-pattern overflow-hidden pt-20">
+      <section className="relative min-h-[700px] sm:min-h-screen w-full flex items-center justify-center grid-pattern overflow-hidden pt-12 sm:pt-20">
         {/* Background orbs */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-[#6C63FF] rounded-full opacity-10 blur-[120px] animate-float" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#FF6B9D] rounded-full opacity-10 blur-[120px]" style={{ animationDelay: '3s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#6C63FF] rounded-full opacity-5 blur-[200px]" />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-[var(--primary)] rounded-full opacity-10 blur-[120px] animate-float" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-[var(--secondary)] rounded-full opacity-10 blur-[120px]" style={{ animationDelay: '3s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[var(--primary)] rounded-full opacity-5 blur-[200px]" />
 
         <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -65,8 +65,8 @@ export default function Home() {
               transition={{ delay: 0.2 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgba(108,99,255,0.1)] border border-[rgba(108,99,255,0.3)] mb-8"
             >
-              <span className="w-2 h-2 rounded-full bg-[#00D4AA] animate-pulse" />
-              <span className="text-sm text-[#8888aa]">Trusted by 10,000+ homeowners</span>
+              <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse" />
+              <span className="text-sm text-[var(--text-muted)]">Trusted by 10,000+ homeowners</span>
             </motion.div>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6">
@@ -74,25 +74,25 @@ export default function Home() {
               <span className="gradient-text">Reimagined</span>
             </h1>
 
-            <p className="max-w-2xl mx-auto text-lg sm:text-xl text-[#8888aa] mb-10 leading-relaxed">
-              Book premium home services with verified professionals. From deep cleaning to AC repairs &mdash; we&apos;ve got you covered, <span className="text-white font-medium">always</span>.
+            <p className="max-w-2xl mx-auto text-lg sm:text-xl text-[var(--text-muted)] mb-10 leading-relaxed">
+              Book premium home services with verified professionals. From deep cleaning to AC repairs &mdash; we&apos;ve got you covered, <span className="text-[var(--foreground)] font-medium">always</span>.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/signup">
+            <div className="flex flex-row gap-3 sm:gap-4 justify-center items-center">
+              <Link href="/signup" className="flex-1 sm:flex-none max-w-[180px] sm:max-w-none">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="btn-primary text-lg !py-4 !px-8 flex items-center gap-2 glow-primary"
+                  className="btn-primary w-full text-base sm:text-lg !py-3 sm:!py-4 !px-4 sm:!px-8 flex items-center justify-center gap-2 glow-primary whitespace-nowrap"
                 >
-                  Book a Service <FiArrowRight />
+                  Book a Service <FiArrowRight className="hidden sm:inline" />
                 </motion.button>
               </Link>
-              <Link href="/#how-it-works">
+              <Link href="/#how-it-works" className="flex-1 sm:flex-none max-w-[180px] sm:max-w-none">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="btn-secondary text-lg !py-4 !px-8"
+                  className="btn-secondary w-full text-base sm:text-lg !py-3 sm:!py-4 !px-4 sm:!px-8 whitespace-nowrap"
                 >
                   How It Works
                 </motion.button>
@@ -113,7 +113,7 @@ export default function Home() {
               ].map((stat) => (
                 <div key={stat.label} className="text-center">
                   <div className="text-2xl sm:text-3xl font-bold gradient-text-primary">{stat.value}</div>
-                  <div className="text-xs sm:text-sm text-[#666680] mt-1">{stat.label}</div>
+                  <div className="text-xs sm:text-sm text-[var(--placeholder)] mt-1">{stat.label}</div>
                 </div>
               ))}
             </motion.div>
@@ -126,8 +126,8 @@ export default function Home() {
           transition={{ repeat: Infinity, duration: 2 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
         >
-          <div className="w-6 h-10 rounded-full border-2 border-[rgba(108,99,255,0.3)] flex justify-center pt-2">
-            <div className="w-1 h-3 rounded-full bg-[#6C63FF]" />
+          <div className="w-6 h-10 rounded-full border-2 border-[var(--border)] flex justify-center pt-2">
+            <div className="w-1 h-3 rounded-full bg-[var(--primary)]" />
           </div>
         </motion.div>
       </section>
@@ -136,11 +136,11 @@ export default function Home() {
       <section id="services" className="py-24 relative w-full flex justify-center">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="text-center mb-16">
-            <span className="text-sm font-semibold tracking-wider uppercase text-[#6C63FF]">Our Services</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-3 mb-4">
+            <span className="text-sm font-semibold tracking-wider uppercase text-[var(--primary)]">Our Services</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-3 mb-4 text-[var(--foreground)]">
               What We <span className="gradient-text">Offer</span>
             </h2>
-            <p className="max-w-xl mx-auto text-[#8888aa]">
+            <p className="max-w-xl mx-auto text-[var(--text-muted)]">
               Professional services delivered by verified experts right to your doorstep
             </p>
           </motion.div>
@@ -159,12 +159,12 @@ export default function Home() {
                   </div>
                 )}
                 <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-[#6C63FF] transition-colors">
+                <h3 className="text-xl font-semibold mb-2 text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors">
                   {service.name}
                 </h3>
-                <p className="text-[#8888aa] text-sm leading-relaxed">{service.desc}</p>
+                <p className="text-[var(--text-muted)] text-sm leading-relaxed">{service.desc}</p>
                 {service.active && (
-                  <div className="mt-4 flex items-center gap-1 text-[#6C63FF] text-sm font-medium group-hover:gap-2 transition-all">
+                  <div className="mt-4 flex items-center gap-1 text-[var(--primary)] text-sm font-medium group-hover:gap-2 transition-all">
                     Book Now <FiArrowRight />
                   </div>
                 )}
@@ -179,18 +179,18 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[rgba(108,99,255,0.03)] to-transparent" />
         <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="text-center mb-16">
-            <span className="text-sm font-semibold tracking-wider uppercase text-[#FF6B9D]">Why allWays?</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-3 mb-4">
+            <span className="text-sm font-semibold tracking-wider uppercase text-[var(--secondary)]">Why AllWays?</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-3 mb-4 text-[var(--foreground)]">
               We{`'`}re <span className="gradient-text">Different</span>
             </h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: <FiShield className="text-[#6C63FF]" size={28} />, title: 'Verified Pros', desc: 'Background-checked and trained professionals' },
-              { icon: <FiStar className="text-[#FF6B9D]" size={28} />, title: 'Top Quality', desc: 'Premium service with satisfaction guarantee' },
-              { icon: <FiClock className="text-[#00D4AA]" size={28} />, title: 'On Time', desc: 'Punctual service, every single time' },
-              { icon: <FiCheckCircle className="text-[#FFB74D]" size={28} />, title: 'Fair Pricing', desc: 'Transparent pricing with no hidden charges' },
+              { icon: <FiShield className="text-[var(--primary)]" size={28} />, title: 'Verified Pros', desc: 'Background-checked and trained professionals' },
+              { icon: <FiStar className="text-[var(--secondary)]" size={28} />, title: 'Top Quality', desc: 'Premium service with satisfaction guarantee' },
+              { icon: <FiStar className="text-[var(--accent)]" size={28} />, title: 'On Time', desc: 'Punctual service, every single time' },
+              { icon: <FiCheckCircle className="text-[var(--secondary)]" size={28} />, title: 'Fair Pricing', desc: 'Transparent pricing with no hidden charges' },
             ].map((item, i) => (
               <motion.div
                 key={item.title}
@@ -198,11 +198,11 @@ export default function Home() {
                 transition={{ delay: i * 0.1, duration: 0.5 }}
                 className="card text-center group"
               >
-                <div className="w-14 h-14 rounded-2xl bg-[rgba(108,99,255,0.1)] flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                <div className="w-14 h-14 rounded-2xl bg-[var(--surface-light)] flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                   {item.icon}
                 </div>
-                <h3 className="text-lg font-semibold mb-2 text-white">{item.title}</h3>
-                <p className="text-sm text-[#8888aa]">{item.desc}</p>
+                <h3 className="text-lg font-semibold mb-2 text-[var(--foreground)]">{item.title}</h3>
+                <p className="text-sm text-[var(--text-muted)]">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -213,11 +213,11 @@ export default function Home() {
       <section id="how-it-works" className="py-24 relative w-full flex justify-center">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="text-center mb-16">
-            <span className="text-sm font-semibold tracking-wider uppercase text-[#00D4AA]">Simple Process</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-3 mb-4">
+            <span className="text-sm font-semibold tracking-wider uppercase text-[var(--accent)]">Simple Process</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-3 mb-4 text-[var(--foreground)]">
               How It <span className="gradient-text">Works</span>
             </h2>
-            <p className="max-w-xl mx-auto text-[#8888aa]">
+            <p className="max-w-xl mx-auto text-[var(--text-muted)]">
               Get started in three simple steps
             </p>
           </motion.div>
@@ -231,15 +231,15 @@ export default function Home() {
                 className="relative"
               >
                 <div className="card text-center relative overflow-hidden">
-                  <div className="absolute top-4 right-4 text-5xl font-black text-[rgba(108,99,255,0.08)]">
+                  <div className="absolute top-4 right-4 text-5xl text-emphasized text-[var(--border)] opacity-20">
                     {item.step}
                   </div>
                   <div className="text-5xl mb-4">{item.icon}</div>
-                  <h3 className="text-xl font-semibold mb-2 text-white">{item.title}</h3>
-                  <p className="text-sm text-[#8888aa]">{item.desc}</p>
+                  <h3 className="text-xl font-semibold mb-2 text-[var(--foreground)]">{item.title}</h3>
+                  <p className="text-sm text-[var(--text-muted)]">{item.desc}</p>
                 </div>
                 {i < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2 text-[#6C63FF]">
+                  <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2 text-[var(--primary)]">
                     <FiArrowRight size={24} />
                   </div>
                 )}
@@ -254,8 +254,8 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[rgba(255,107,157,0.03)] to-transparent" />
         <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="text-center mb-16">
-            <span className="text-sm font-semibold tracking-wider uppercase text-[#FFB74D]">Testimonials</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-3 mb-4">
+            <span className="text-sm font-semibold tracking-wider uppercase text-[var(--secondary)]">Testimonials</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-3 mb-4 text-[var(--foreground)]">
               What People <span className="gradient-text">Say</span>
             </h2>
           </motion.div>
@@ -270,19 +270,19 @@ export default function Home() {
               >
                 <div className="flex gap-1 mb-4">
                   {[...Array(t.rating)].map((_, j) => (
-                    <FiStar key={j} className="text-[#FFB74D] fill-[#FFB74D]" size={16} />
+                    <FiStar key={j} className="text-[var(--secondary)] fill-[var(--secondary)]" size={16} />
                   ))}
                 </div>
-                <p className="text-[#8888aa] text-sm leading-relaxed mb-6">
+                <p className="text-[var(--text-muted)] text-sm leading-relaxed mb-6">
                   &ldquo;{t.text}&rdquo;
                 </p>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#6C63FF] to-[#FF6B9D] flex items-center justify-center text-white font-bold text-sm">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] flex items-center justify-center text-[var(--foreground)] font-bold text-sm">
                     {t.name.charAt(0)}
                   </div>
                   <div>
-                    <div className="text-sm font-semibold text-white">{t.name}</div>
-                    <div className="text-xs text-[#666680]">{t.role}</div>
+                    <div className="text-sm font-semibold text-[var(--foreground)]">{t.name}</div>
+                    <div className="text-xs text-[var(--placeholder)]">{t.role}</div>
                   </div>
                 </div>
               </motion.div>
@@ -301,10 +301,10 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-br from-[#6C63FF] to-[#5046E5]" />
             <div className="absolute inset-0 opacity-20 grid-pattern" />
             <div className="relative">
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              <p className="text-3xl sm:text-4xl font-bold text-[#fff] mb-4">
                 Ready to get started?
-              </h2>
-              <p className="text-white/80 mb-8 max-w-lg mx-auto">
+              </p>
+              <p className="text-[#fff]/80 mb-8 max-w-lg mx-auto">
                 Join thousands of happy homeowners and experience premium home services today.
               </p>
               <Link href="/signup">

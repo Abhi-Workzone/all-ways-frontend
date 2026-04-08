@@ -86,15 +86,15 @@ export function EvidenceModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onClose} />
+      <div className="absolute inset-0 bg-soft-dark backdrop-blur-sm" onClick={onClose} />
       
-      <div className="relative bg-[#12121a] border border-white/10 w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl animate-in zoom-in-95 duration-200">
-        <div className="p-6 border-b border-white/5 flex items-center justify-between">
+      <div className="relative bg-[var(--surface)] border border-[var(--border)] w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl animate-in zoom-in-95 duration-200">
+        <div className="p-6 border-b border-[var(--border)] flex items-center justify-between">
            <div>
-              <h2 className="text-xl font-bold text-white uppercase tracking-tight">{title}</h2>
-              <p className="text-[10px] text-[#666680] font-bold uppercase tracking-widest mt-1">{subtitle}</p>
+              <h2 className="text-xl font-bold text-[var(--foreground)] uppercase tracking-tight">{title}</h2>
+              <p className="text-[10px] text-[var(--placeholder)] font-bold uppercase tracking-widest mt-1">{subtitle}</p>
            </div>
-           <button onClick={onClose} className="p-2 hover:bg-white/5 rounded-xl text-[#8888aa]">
+           <button onClick={onClose} className="p-2 hover:bg-soft-dark rounded-xl text-[var(--text-muted)]">
               <FiX size={24} />
            </button>
         </div>
@@ -102,12 +102,12 @@ export function EvidenceModal({
         <div className="p-8 space-y-6">
            <div className="grid grid-cols-2 gap-4">
               {previews.map((img, idx) => (
-                 <div key={idx} className="aspect-video rounded-xl border border-white/5 bg-black/40 relative group overflow-hidden">
+                 <div key={idx} className="aspect-video rounded-xl border border-[var(--border)] bg-soft-dark relative group overflow-hidden">
                     <img src={img} className="w-full h-full object-cover" alt="Proof" />
                     <button 
                       type="button"
                       onClick={() => removeFile(idx)}
-                      className="absolute top-2 right-2 p-1.5 bg-red-500 text-white rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                      className="absolute top-2 right-2 p-1.5 bg-red-500 !text-white rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
                     >
                        <FiX size={14} />
                     </button>
@@ -115,28 +115,28 @@ export function EvidenceModal({
               ))}
               
               {files.length < maxImages && (
-                <label className="aspect-video rounded-xl border-2 border-dashed border-white/10 hover:border-[#6C63FF]/50 transition-colors flex flex-col items-center justify-center cursor-pointer bg-black/20 group">
+                <label className="aspect-video rounded-xl border-2 border-dashed border-[var(--border)] hover:border-[#6C63FF]/50 transition-colors flex flex-col items-center justify-center cursor-pointer bg-soft-dark group">
                    <input type="file" multiple accept="image/*" className="hidden" onChange={handleFileChange} />
-                   <FiUploadCloud className="text-[#666680] group-hover:text-[#6C63FF] mb-2" size={24} />
-                   <span className="text-[10px] text-[#666680] font-black uppercase tracking-widest group-hover:text-white transition-colors">Select Files</span>
+                   <FiUploadCloud className="text-[var(--placeholder)] group-hover:text-[var(--primary)] mb-2" size={24} />
+                   <span className="text-[10px] text-[var(--placeholder)] text-emphasized uppercase tracking-widest group-hover:text-[var(--foreground)] transition-colors">Select Files</span>
                 </label>
               )}
            </div>
 
-           <div className="bg-[#6C63FF]/5 p-4 rounded-2xl border border-[#6C63FF]/10 flex gap-3">
-              <FiCamera className="text-[#6C63FF] mt-0.5" />
-              <p className="text-[10px] text-[#8888aa] leading-relaxed">
+           <div className="bg-[var(--primary)]/5 p-4 rounded-2xl border border-[#6C63FF]/10 flex gap-3">
+              <FiCamera className="text-[var(--primary)] mt-0.5" />
+              <p className="text-[10px] text-[var(--text-muted)] leading-relaxed">
                  Per operational protocol, you must upload at least <b>{minImages} clear images</b> of the work from your device gallery or camera.
               </p>
            </div>
         </div>
 
-        <div className="p-4 bg-black/40 flex gap-3">
-           <button onClick={onClose} className="flex-1 py-3 text-xs font-bold text-[#8888aa] hover:bg-white/5 rounded-2xl transition-colors uppercase tracking-widest">Cancel</button>
+        <div className="p-4 bg-soft-dark flex gap-3">
+           <button onClick={onClose} className="flex-1 py-3 text-xs font-bold text-[var(--text-muted)] hover:bg-soft-dark rounded-2xl transition-colors uppercase tracking-widest">Cancel</button>
            <button 
              onClick={handleSubmit}
              disabled={isPending || files.length < minImages}
-             className="flex-1 py-3 bg-[#00D4AA] disabled:bg-white/5 disabled:text-[#666680] text-black font-black text-xs uppercase tracking-widest rounded-2xl shadow-lg shadow-[#00D4AA]/10 transition-all flex items-center justify-center gap-2"
+             className="flex-1 py-3 bg-[var(--accent)] disabled:bg-soft-dark disabled:text-[var(--placeholder)] text-black text-emphasized text-xs uppercase tracking-widest rounded-2xl shadow-lg shadow-[#00D4AA]/10 transition-all flex items-center justify-center gap-2"
            >
               {isPending ? 'Processing...' : <><FiCheckCircle /> {buttonText}</>}
            </button>
